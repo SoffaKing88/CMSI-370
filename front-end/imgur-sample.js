@@ -2,17 +2,21 @@ $(function () {
 
     $("#search-button").click(function () {
 		$.ajax( {
-			url: "http://api.imgur.com/endpoints/gallery#gallery-search",
+			url: "http://api.imgur.com/3/gallery/search/",
 				headers: {
 					"Authorization": "Client-ID 60a9f235e6726aa"
+				},
+			data: {
+				'q' : $("#search-term").val()
 				}
 			}
 		).done(function (result) {
-			img = $('<img>').attr('src', result.data.link);
-			console.log(img);
-			$("#single-image").append(img);
-			console.log(result.data.link);
-			$('#search-button').attr("disabled", true);
+			console.log(result)
+			//img = $('<img>').attr('src', result.data.link);
+			//console.log(img);
+			//$("#single-image").append(img);
+			//console.log(result.data.link);
+			//$('#search-button').attr("disabled", true);
 		});
 	});
 
@@ -25,8 +29,7 @@ $(function () {
     			type: 'POST',
     			data: {
         		'image': 'venom.jpg'
-    			},
-    			success: function() { console.log('cool'); }
+    			}
 		});
 	});
 
