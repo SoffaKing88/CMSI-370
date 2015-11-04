@@ -2,7 +2,7 @@ $(function () {
 
     $("#search-button").click(function () {
 		$.ajax( {
-			url: "http://api.imgur.com/3/gallery/search/",
+			url: "https://api.imgur.com/3/gallery/search/",
 				headers: {
 					"Authorization": "Client-ID 60a9f235e6726aa"
 				},
@@ -12,11 +12,12 @@ $(function () {
 			}
 		).done(function (result) {
 			console.log(result)
-			//img = $('<img>').attr('src', result.data.link);
-			//console.log(img);
-			//$("#single-image").append(img);
-			//console.log(result.data.link);
-			//$('#search-button').attr("disabled", true);
+			$("#search-images").empty()
+			for(i = 0; i < 9; i++){
+				img = $('<img>').attr('src', result.data[i].link);
+				console.log(img);
+				$("#search-images").append(img);
+			}
 		});
 	});
 
@@ -48,7 +49,7 @@ $(function () {
             "Authorization": "Client-ID 60a9f235e6726aa"
         }
     }).done(function (result) {
-    	console.log(result.data)
+    	//console.log(result.data)
     	for(i = 0; i < 9; i++){
     		img = $('<img>').attr('src', result.data[i].link);
     		console.log(img);
