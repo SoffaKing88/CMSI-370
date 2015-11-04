@@ -21,6 +21,24 @@ $(function () {
 		});
 	});
 
+	$("#random-button").click(function () {
+		$.ajax( {
+			url: "https://api.imgur.com/3/gallery/random/",
+				headers: {
+					"Authorization": "Client-ID 60a9f235e6726aa"
+				},
+			}
+		).done(function (result) {
+			console.log(result)
+			$("#random-images").empty()
+			for(i = 0; i < 9; i++){
+				img = $('<img>').attr('src', result.data[i].link);
+				console.log(img);
+				$("#random-images").append(img);
+			}
+		});
+	});
+
 	$("#upload-button").click(function () {
 		$.ajax({ 
     			url: 'https://api.imgur.com/3/upload',
