@@ -48,9 +48,12 @@ $(function () {
             "Authorization": "Client-ID 60a9f235e6726aa"
         }
     }).done(function (result) {
-    	//img = $('<img>').attr('src', result.data.link);
-    	//console.log(img);
-    	//$("#pop-images").append(img);
-        console.log(result);
+    	console.log(result.data)
+    	for(i = 0; i < 9; i++){
+    		img = $('<img>').attr('src', result.data[i].link);
+    		console.log(img);
+    		$("#pop-images").append(img);
+    	}
+        //console.log(result);
     });
 });
