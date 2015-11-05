@@ -31,16 +31,16 @@
 			<div id="pop-images"></div>
 
 			<div class="row">
-				<div class="col-xs-12"><h3>Upload An Image</h3></div>
+				<div class="col-xs-12"><h3>Search for a Subreddit</h3></div>
 			</div>
 			<div class="row">
   					<div class="form-group">
-    					<label for="search-term">Enter the URL for a picture and it will be uploaded to Imgur:</label>
-   						<input type="text" class="form-control" id="upload-term" style="width:300px">
-   						<button id="upload-button" class="btn btn-default">Upload!</button>
+    					<label for="subreddit-term">Enter a subreddit tag and this button will return some pictures from that subreddit:</label>
+   						<input type="text" class="form-control" id="subreddit-term" style="width:300px">
+   						<button id="subreddit-button" class="btn btn-default">Search Subreddits!</button>
   					</div>
   			</div>
-  			<div id="upload-image"></div>
+  			<div id="subreddit-images"></div>
 
 			<div class="row">
 				<div class="col-xs-12"><h3>Search Images</h3></div>
@@ -49,24 +49,10 @@
   				<div class="form-group">
     				<label for="search-term">Search for Images:</label>
    					<input type="text" class="form-control" id="search-term" style="width:300px">
-   					<button id="search-button" class="btn btn-default" data-toggle="modal" data-target="#basicModal">Search Imgur!</button>
-   					<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    					<div class="modal-dialog">
-        					<div class="modal-content">
-           						<div class="modal-header">
-            						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            						<h4 class="modal-title" id="myModalLabel">Searched Pictures</h4>
-            					</div>
-            					<div class="modal-body">
-                					<div id="search-images"></div>
-            					</div>
-            					<div class="modal-footer">
-                					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  								</div>
-  							</div>
-  						</div>
-  					</div>
+   					<button id="search-button" class="btn btn-default">Search Imgur!</button>
+            	</div>
   			</div>
+  			<div id="search-images"></div>
 
   			<div class="row">
 				<div class="col-xs-12"><h3>Random Images</h3></div>
