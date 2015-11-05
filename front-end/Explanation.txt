@@ -1,0 +1,13 @@
+Imgur API Project
+
+I consider my 5 non-trivial web service functions to be
+
+1. Generating the top 10 "Viral" images from Imgur.com
+2. Generating the top 10 "Meme" images from Imgur.com
+3. Searching for a subreddit and producing the top 10 
+    images from that subreddit
+4. Searching for anything and producing the top 10 images
+    related to your search query
+5. Producing 10 random images from Imgur.com
+
+-Nick Soffa
