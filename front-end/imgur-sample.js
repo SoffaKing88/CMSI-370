@@ -6,12 +6,11 @@ $(function () {
             "Authorization": "Client-ID 60a9f235e6726aa"
         }
     }).done(function (result) {
-    	j = 10
+    	var j = 10
     	for(var i = 0; i < j; i++){
-    		//console.log(result.data[i].link)
     		albumLink = "http://imgur.com/a/";
+    		console.log(result.data[i].link);
     		if(!((result.data[i].link).startsWith(albumLink))){
-    			image_url = result.data[i].link;
     			img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
     			$("#pop-images").append(img);
     		}
@@ -20,6 +19,33 @@ $(function () {
     		}
     	}
     	$("#pop-images").ready(function() {
+    		$('img').each(function (){
+    			var currentImage = $(this);
+    			currentImage.wrap("<a href='" + currentImage.attr("src") + "' </a>");
+    		});
+    	});
+    });
+
+    $.ajax({
+        url: "https://api.imgur.com/3/g/memes/",
+        headers: {
+            "Authorization": "Client-ID 60a9f235e6726aa"
+        }
+    }).done(function (result) {
+    	var j = 10
+    	for(var i = 0; i < j; i++){
+    		albumLink = "http://imgur.com/a/";
+    		console.log(result.data[i].link);
+    		if(!((result.data[i].link).startsWith(albumLink))){
+    			image_url = result.data[i].link;
+    			img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
+    			$("#meme-images").append(img);
+    		}
+    		if((result.data[i].link).startsWith(albumLink)){
+    			j++
+    		}
+    	}
+    	$("#meme-images").ready(function() {
     		$('img').each(function (){
     			var currentImage = $(this);
     			currentImage.wrap("<a href='" + currentImage.attr("src") + "' </a>");
@@ -37,14 +63,17 @@ $(function () {
 			'q' : $("#subreddit-term").val()
 			}
 		}).done(function (result) {
-			console.log($("#subreddit-term").val())
 			$("#subreddit-images").empty()
-			for(i = 0; i < 9; i++){
+			var j = 10
+			for(var i = 0; i < j; i++){
 				albumLink = "http://imgur.com/a/";
 				console.log(result.data[i].link);
 				if(!((result.data[i].link).startsWith(albumLink))){
 					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
 					$("#subreddit-images").append(img);
+				}
+				if((result.data[i].link).startsWith(albumLink)){
+					j++
 				}
 			}
 
@@ -69,21 +98,25 @@ $(function () {
 			}
 		).done(function (result) {
 			$("#search-images").empty()
-			for(i = 0; i < 9; i++){
+			var j = 10
+			for(i = 0; i < j; i++){
 				albumLink = "http://imgur.com/a/";
 				console.log(result.data[i].link);
 				if(!((result.data[i].link).startsWith(albumLink))){
 					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
 					$("#search-images").append(img);
 				}
+				if((result.data[i].link).startsWith(albumLink)){
+					j++
+				}
 			}
 
 			$("#search-images").ready(function() {
-    		$('img').each(function (){
-    			var currentImage = $(this);
-    			currentImage.wrap("<a href='" + currentImage.attr("src") + "' </a>");
+    			$('img').each(function (){
+    				var currentImage = $(this);
+    				currentImage.wrap("<a href='" + currentImage.attr("src") + "' </a>");
+    			});
     		});
-    	});
 		});
 	});
 
@@ -95,14 +128,17 @@ $(function () {
 				},
 			}
 		).done(function (result) {
-			console.log(result);
+			var j = 10
 			$("#random-images").empty();
-			for(var i = 0; i < 9; i++){
+			for(var i = 0; i < j; i++){
 				albumLink = "http://imgur.com/a/";
 				console.log(result.data[i].link);
 				if(!((result.data[i].link).startsWith(albumLink))){
 					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
 					$("#random-images").append(img);
+				}
+				if((result.data[i].link).startsWith(albumLink)){
+					j++
 				}
 			}
 
@@ -114,5 +150,5 @@ $(function () {
     		});
 		});
 	});
-	
+
 });
