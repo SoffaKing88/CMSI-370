@@ -14,9 +14,12 @@ $(function () {
 			console.log(result)
 			$("#search-images").empty()
 			for(i = 0; i < 9; i++){
-				img = $('<img>').attr('src', result.data[i].link);
-				console.log(img);
-				$("#search-images").append(img);
+				albumLink = "http://imgur.com/a/";
+				console.log(result.data[i].link);
+				if(!((result.data[i].link).startsWith(albumLink))){
+					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
+					$("#search-images").append(img);
+				}
 			}
 		});
 	});
@@ -29,13 +32,19 @@ $(function () {
 				},
 			}
 		).done(function (result) {
-			console.log(result)
-			$("#random-images").empty()
-			for(i = 0; i < 9; i++){
-				img = $('<img>').attr('src', result.data[i].link);
-				console.log(img);
-				$("#random-images").append(img);
+			console.log(result);
+			$("#random-images").empty();
+			for(var i = 0; i < 9; i++){
+				albumLink = "http://imgur.com/a/";
+				console.log(result.data[i].link);
+				if(!((result.data[i].link).startsWith(albumLink))){
+					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
+					$("#random-images").append(img);
+				}
 			}
+				console.log(img);
+				
+			
 		});
 	});
 
@@ -67,12 +76,24 @@ $(function () {
             "Authorization": "Client-ID 60a9f235e6726aa"
         }
     }).done(function (result) {
-    	//console.log(result.data)
-    	for(i = 0; i < 9; i++){
-    		img = $('<img>').attr('src', result.data[i].link);
-    		console.log(img);
-    		$("#pop-images").append(img);
+    	j = 10
+    	for(var i = 0; i < j; i++){
+    		//console.log(result.data[i].link)
+    		albumLink = "http://imgur.com/a/";
+    		if(!((result.data[i].link).startsWith(albumLink))){
+    			image_url = result.data[i].link;
+    			img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
+    			$("#pop-images").append(img);
+    		}
+    		if((result.data[i].link).startsWith(albumLink)){
+    			j++
+    		}
     	}
-        //console.log(result);
+    	$("#pop-images").ready(function() {
+    		$('img').each(function (){
+    			var currentImage = $(this);
+    			currentImage.wrap("<a href='" + currentImage.attr("src") + "' </a>");
+    		});
+    	});
     });
 });
