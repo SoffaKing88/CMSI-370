@@ -9,10 +9,11 @@ $(function () {
     	var j = 10 // JD: 10
     	for(var i = 0; i < j; i++){ // JD: 8, 11
     		albumLink = "http://imgur.com/a/"; // JD: 12
-    		console.log(result.data[i].link);
+    		//console.log(result.data[i].link);
     		if(!((result.data[i].link).startsWith(albumLink))){ // JD: 8, 11
     			img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail"); // JD: 12
-    			$("#pop-images").append(img);
+    			console.log(img);
+                $("#pop-images").append(img);
     		}
     		if((result.data[i].link).startsWith(albumLink)){ // JD: 8, 11
     			j++ // JD: 10
@@ -36,7 +37,7 @@ $(function () {
     	var j = 10
     	for(var i = 0; i < j; i++){
     		albumLink = "http://imgur.com/a/";
-    		console.log(result.data[i].link);
+    		//console.log(result.data[i].link);
     		if(!((result.data[i].link).startsWith(albumLink))){
     			image_url = result.data[i].link;
     			img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
@@ -69,7 +70,7 @@ $(function () {
 			var j = 10
 			for(var i = 0; i < j; i++){
 				albumLink = "http://imgur.com/a/";
-				console.log(result.data[i].link);
+				//console.log(result.data[i].link);
 				if(!((result.data[i].link).startsWith(albumLink))){
 					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
 					$("#subreddit-images").append(img);
@@ -104,7 +105,7 @@ $(function () {
 			var j = 10
 			for(i = 0; i < j; i++){
 				albumLink = "http://imgur.com/a/";
-				console.log(result.data[i].link);
+				//console.log(result.data[i].link);
 				if(!((result.data[i].link).startsWith(albumLink))){
 					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
 					$("#search-images").append(img);
@@ -136,7 +137,7 @@ $(function () {
 			$("#random-images").empty();
 			for(var i = 0; i < j; i++){
 				albumLink = "http://imgur.com/a/";
-				console.log(result.data[i].link);
+				//console.log(result.data[i].link);
 				if(!((result.data[i].link).startsWith(albumLink))){
 					img = $('<img>').attr('src', result.data[i].link).addClass("thumbnail");
 					$("#random-images").append(img);
