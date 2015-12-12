@@ -30,7 +30,7 @@
                     left: potLeft,
                     top: potTop
                 });
-                $("#oldOffsetLeft").text("Time for Flick");
+                //$("#oldOffsetLeft").text("Time for Flick");
 
                 // var timePassed = event.timeStamp - touch.target.priorTime;
 
@@ -64,15 +64,15 @@
         });
     };
 
-    var flick = function (event) {
-        $.each(event.changedTouches, function (index, touch){
-            if (touch.target.movingBox) {
-                element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed;
-                element.velocity.y = oldOffsetTop - newOffsetTop / timePassed;
+    // var flick = function (event) {
+    //     $.each(event.changedTouches, function (index, touch){
+    //         if (touch.target.movingBox) {
+    //             element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed;
+    //             element.velocity.y = oldOffsetTop - newOffsetTop / timePassed;
 
-            }
-        });
-    };
+    //         }
+    //     });
+    // };
 
     /**
      * Indicates that an element is unhighlighted.
@@ -161,7 +161,7 @@
 
                 newOffsetLeft = offset.left;
                 newOffsetTop = offset.top;
-                flick();
+                //flick();
 
 
                 if(!element.touching){
