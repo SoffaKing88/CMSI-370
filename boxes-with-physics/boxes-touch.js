@@ -6,17 +6,20 @@
         $.each(event.changedTouches, function (index, touch) {
             // Don't bother if we aren't tracking anything.
             if (touch.target.movingBox) {
-                var potLeft = touch.pageX - touch.target.deltaX;
-                var potTop = touch.pageY - touch.target.deltaY;
-
-                touch.target.touching = true;
-
                 // Reposition the object.
                 touch.target.movingBox.offset({
-                    left: potLeft,
-                    top: potTop
+                    left: touch.pageX - touch.target.deltaX,
+                    top: touch.pageY - touch.target.deltaY
                 });
+
+                touch.target.touching = true;
+                touch.target.velocity.x = touch.pageX - touch.target.lastX;
+                touch.target.velocity.y = touch.pageY - touch.target.lastY;
+                touch.target.lastX = touch.pageX;
+                touch.target.lastY = touch.pageY;
             }
+            //$("#timestamp").text(touch.pageX);
+            //$("#timestamp").text(touch.pageY);
         });
 
         // Don't do any touch scrolling.
@@ -42,7 +45,6 @@
     //         if (touch.target.movingBox) {
     //             element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed;
     //             element.velocity.y = oldOffsetTop - newOffsetTop / timePassed;
-
     //         }
     //     });
     // };
@@ -74,8 +76,9 @@
 
             touch.target.height = jThis.height();
             touch.target.width = Jthis.width();
-            oldOffsetLeft = touch.target.movingBox.offset();
-            oldOffsetTop = touch.target.movingBox.offset();
+
+            touch.target.lastX = touch.pageX;
+            touch.target.lastY = touch.pageY;
 
         });
 
@@ -134,7 +137,6 @@
 
                 newOffsetLeft = offset.left;
                 newOffsetTop = offset.top;
-                //flick();
 
 
                 if(!element.touching){
@@ -174,6 +176,9 @@
                         element.velocity.x = 0;
                     }
                 }
+
+                //element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed;
+                //element.velocity.y = oldOffsetTop - newOffsetTop / timePassed;
 
                 if(element)
                 $(element).offset(offset);
