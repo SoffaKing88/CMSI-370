@@ -6,43 +6,16 @@
         $.each(event.changedTouches, function (index, touch) {
             // Don't bother if we aren't tracking anything.
             if (touch.target.movingBox) {
-                // var prevOffset = touch.target.movingBox.offset();
                 var potLeft = touch.pageX - touch.target.deltaX;
                 var potTop = touch.pageY - touch.target.deltaY;
 
                 touch.target.touching = true;
-
-                // if (potLeft < touch.target.boxOffset.left) {
-                //     potLeft = touch.target.boxOffset.left;
-                // }
-                // if (potTop < touch.target.boxOffset.top) {
-                //     potTop = touch.target.boxOffset.top;
-                // }
-                // if (potTop + touch.target.height > touch.target.boxOffset.top + touch.target.boxHeight) {
-                //     potTop = touch.target.boxOffset.top + touch.target.boxHeight - touch.target.height;
-                // }
-                // if (potLeft + touch.target.width > touch.target.boxOffset.left + touch.target.boxWidth) {
-                //     potLeft = touch.target.boxOffset.left + touch.target.boxWidth - touch.target.width;
-                // }
 
                 // Reposition the object.
                 touch.target.movingBox.offset({
                     left: potLeft,
                     top: potTop
                 });
-                //$("#oldOffsetLeft").text("Time for Flick");
-
-                // var timePassed = event.timeStamp - touch.target.priorTime;
-
-                // touch.target.YVelocity = (potTop - prevOffset.top) / timePassed;
-                // touch.target.Xvelocity = (potLeft - prevOffset.left) / timePassed;
-
-                // touch.target.priorTime = event.timeStamp;
-
-                //$("#oldOffsetLeft").text(oldOffsetLeft);
-                //$("#oldOffsetTop").text(oldOffsetTop);
-                //$("#newOffsetLeft").text(newOffsetLeft);
-                //$("#newOffsetTop").text(newOffsetTop);
             }
         });
 
@@ -220,10 +193,6 @@
         window.requestAnimationFrame(updateBoxPositions);
 
         window.addEventListener('devicemotion', function (event) {
-            //$("#timestamp").text("x: " + event.accelerationIncludingGravity.x +
-            //                    "y: " + event.accelerationIncludingGravity.y +
-            //                    "z: " + event.accelerationIncludingGravity.z);
-
             $("div.box").each(function (index, element) {
                 element.acceleration.x = -event.accelerationIncludingGravity.x / 1000;
                 element.acceleration.y = event.accelerationIncludingGravity.y / 1000;
