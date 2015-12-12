@@ -38,8 +38,7 @@
                 // touch.target.Xvelocity = (potLeft - prevOffset.left) / timePassed;
 
                 // touch.target.priorTime = event.timeStamp;
-                oldOffsetLeft = touch.target.movingBox.offset();
-                oldOffsetTop = touch.target.movingBox.offset();
+
                 //$("#oldOffsetLeft").text(oldOffsetLeft);
                 //$("#oldOffsetTop").text(oldOffsetTop);
                 //$("#newOffsetLeft").text(newOffsetLeft);
@@ -61,7 +60,6 @@
                 // touch.target.movingBox.
                 touch.target.movingBox = null;
                 touch.target.touching = false;
-                flick();
             }
         });
     };
@@ -103,6 +101,8 @@
 
             touch.target.height = jThis.height();
             touch.target.width = Jthis.width();
+            oldOffsetLeft = touch.target.movingBox.offset();
+            oldOffsetTop = touch.target.movingBox.offset();
 
         });
 
@@ -161,6 +161,7 @@
 
                 newOffsetLeft = offset.left;
                 newOffsetTop = offset.top;
+                flick();
 
 
                 if(!element.touching){
