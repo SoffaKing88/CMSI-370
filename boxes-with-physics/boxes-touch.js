@@ -18,7 +18,7 @@
                 touch.target.lastX = touch.pageX;
                 touch.target.lastY = touch.pageY;
             }
-            //$("#timestamp").text(touch.pageX);
+            //$("#timestamp").text(touch.pageX); // JD: 2
             //$("#timestamp").text(touch.pageY);
         });
 
@@ -40,7 +40,7 @@
         });
     };
 
-    // var flick = function (event) {
+    // var flick = function (event) { // JD: 2
     //     $.each(event.changedTouches, function (index, touch){
     //         if (touch.target.movingBox) {
     //             element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed;
@@ -132,14 +132,14 @@
         if(timePassed > MS_BETWEEN_FRAMES) {
             $("div.box").each(function (index, element) {
                 var offset = $(element).offset();
-                offset.left += element.velocity.x * timePassed / 10;
-                offset.top += element.velocity.y * timePassed / 10;
+                offset.left += element.velocity.x * timePassed / 10; // JD: 6
+                offset.top += element.velocity.y * timePassed / 10; // JD: 6
 
-                newOffsetLeft = offset.left;
-                newOffsetTop = offset.top;
+                newOffsetLeft = offset.left; // JD: 7
+                newOffsetTop = offset.top; // JD: 7
 
 
-                if(!element.touching){
+                if(!element.touching){ // JD: 3, 4, 5
                     element.velocity.x += element.acceleration.x * timePassed;
                     element.velocity.y += element.acceleration.y * timePassed;
                 };
@@ -148,40 +148,42 @@
                     element.velocity.y = 0;
                 }
 
+                // JD: 9
                 if (offset.left < outerboxLeft) {
                     offset.left = outerboxLeft;
-                    element.velocity.x = element.velocity.x * -0.5;
-                    if(Math.abs(element.velocity.x) < 0.3){
+                    element.velocity.x = element.velocity.x * -0.5; // JD: 6
+                    if(Math.abs(element.velocity.x) < 0.3){ // JD: 3, 4, 6
                         element.velocity.x = 0;
                     }
                 }
                 if (offset.top < outerboxTop) {
                     offset.top = outerboxTop;
-                    element.velocity.y = element.velocity.y * -0.5;
-                    if(Math.abs(element.velocity.y) < 0.3){
+                    element.velocity.y = element.velocity.y * -0.5; // JD: 6
+                    if(Math.abs(element.velocity.y) < 0.3){ // JD: 3, 4, 6
                         element.velocity.y = 0;
                     }
                 }
                 if (offset.top + $(element).height() > outerboxBottom) {
                     offset.top = outerboxBottom - $(element).height();
-                    element.velocity.y = element.velocity.y * -0.5;
-                    if(Math.abs(element.velocity.y) < 0.3){
+                    element.velocity.y = element.velocity.y * -0.5; // JD: 6
+                    if(Math.abs(element.velocity.y) < 0.3){ // JD: 3, 4, 6
                         element.velocity.y = 0;
                     }
                 }
                 if (offset.left + $(element).width() > outerboxRight) {
                     offset.left = outerboxRight - $(element).width();
-                    element.velocity.x = element.velocity.x * -0.5;
-                    if(Math.abs(element.velocity.x) < 0.3){
+                    element.velocity.x = element.velocity.x * -0.5; // JD: 6
+                    if(Math.abs(element.velocity.x) < 0.3){ // JD: 3, 4, 6
                         element.velocity.x = 0;
                     }
                 }
 
-                //element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed;
+                //element.velocity.x = oldOffsetLeft - newOffsetLeft / timePassed; // JD: 2
                 //element.velocity.y = oldOffsetTop - newOffsetTop / timePassed;
 
+                // JD: 3, 10
                 if(element)
-                $(element).offset(offset);
+                $(element).offset(offset); // JD: 5
             });
             lastTimestamp = timestamp;
         }
@@ -199,8 +201,8 @@
 
         window.addEventListener('devicemotion', function (event) {
             $("div.box").each(function (index, element) {
-                element.acceleration.x = -event.accelerationIncludingGravity.x / 1000;
-                element.acceleration.y = event.accelerationIncludingGravity.y / 1000;
+                element.acceleration.x = -event.accelerationIncludingGravity.x / 1000; // JD: 6
+                element.acceleration.y = event.accelerationIncludingGravity.y / 1000; // JD: 6
             });
 
         });
