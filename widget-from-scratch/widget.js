@@ -1,5 +1,5 @@
 (function ($) {
-	// var dir = "Pictures";
+	// var dir = "Pictures"; // JD: 3
 	// var fileextension = [".png", ".jpg"];
 	// var img = document.createElement("img");
 	// var picList = [];
@@ -23,12 +23,12 @@
 	// 		};
 	// 	}
 	// });
-	function resizable(event){
+	function resizable(event){ // JD: 4
 
 		var newX = event.clientX || event.pageX || event.screenX;
 		var newY = event.clientY || event.pageY || event.screenY;
 
-		eval(event.target.id+".width=newX");
+		eval(event.target.id+".width=newX"); // JD: 5
 		eval(event.target.id+".height=newY");
 		console.log(event);
 
@@ -36,13 +36,13 @@
 	
 
 	$.fn.resizable = function () {
-		$(".image").each(function(index, element){
+		$(".image").each(function(index, element){ // JD: 6
 			element.addEventListener("dragend", resizable, false);
 			element.addEventListener("drag", resizable, false);
 		})
 	}
 
-	// $(window).scroll(function() {
+	// $(window).scroll(function() { // JD: 3
 	// 	if(counter >= picList.length){
 	// 		counter = 0;
 	// 	}

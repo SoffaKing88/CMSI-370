@@ -1,3 +1,3 @@
 $(function () {
-	$(".thumbnail").resizable();
+	$(".thumbnail").resizable(); // JD: 2
 });

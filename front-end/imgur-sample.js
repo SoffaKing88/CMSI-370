@@ -1,4 +1,4 @@
-$(function () {
+$(function () { // JD 1211: 8
 
 	$.ajax({ // JD: 1
         url: "https://api.imgur.com/3/gallery/hot/viral/0.json",
